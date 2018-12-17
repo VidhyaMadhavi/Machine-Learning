@@ -1,0 +1,813 @@
+
+
+ Print first few records of the Data:
+#-----------------------------------------------------------#
+           dateCrawled                  name  seller offerType  price abtest  \
+0  2016-03-24 11:52:17            Golf_3_1.6  privat   Angebot    480   test   
+1  2016-03-24 10:58:45  A5_Sportback_2.7_Tdi  privat   Angebot  18300   test   
+
+  vehicleType  yearOfRegistration  gearbox  powerPS model  kilometer  \
+0         NaN                1993  manuell        0  golf     150000   
+1       coupe                2011  manuell      190   NaN     125000   
+
+   monthOfRegistration fuelType       brand notRepairedDamage  \
+0                    0   benzin  volkswagen               NaN   
+1                    5   diesel        audi                ja   
+
+           dateCreated  nrOfPictures  postalCode             lastSeen  
+0  2016-03-24 00:00:00             0       70435  2016-04-07 03:16:57  
+1  2016-03-24 00:00:00             0       66954  2016-04-07 01:46:50  
+
+
+ Shape of the Dataset:
+#-----------------------------------------------------------#
+(371528, 20)
+
+
+ Datatypes of the Data:
+#-----------------------------------------------------------#
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 371528 entries, 0 to 371527
+Data columns (total 20 columns):
+dateCrawled            371528 non-null object
+name                   371528 non-null object
+seller                 371528 non-null object
+offerType              371528 non-null object
+price                  371528 non-null int64
+abtest                 371528 non-null object
+vehicleType            333659 non-null object
+yearOfRegistration     371528 non-null int64
+gearbox                351319 non-null object
+powerPS                371528 non-null int64
+model                  351044 non-null object
+kilometer              371528 non-null int64
+monthOfRegistration    371528 non-null int64
+fuelType               338142 non-null object
+brand                  371528 non-null object
+notRepairedDamage      299468 non-null object
+dateCreated            371528 non-null object
+nrOfPictures           371528 non-null int64
+postalCode             371528 non-null int64
+lastSeen               371528 non-null object
+dtypes: int64(7), object(13)
+memory usage: 56.7+ MB
+None
+
+
+ Data Central Tendency Values:
+#-----------------------------------------------------------#
+              price  yearOfRegistration        powerPS      kilometer  \
+count  3.715280e+05       371528.000000  371528.000000  371528.000000   
+mean   1.729514e+04         2004.577997     115.549477  125618.688228   
+std    3.587954e+06           92.866598     192.139578   40112.337051   
+min    0.000000e+00         1000.000000       0.000000    5000.000000   
+25%    1.150000e+03         1999.000000      70.000000  125000.000000   
+50%    2.950000e+03         2003.000000     105.000000  150000.000000   
+75%    7.200000e+03         2008.000000     150.000000  150000.000000   
+max    2.147484e+09         9999.000000   20000.000000  150000.000000   
+
+       monthOfRegistration  nrOfPictures    postalCode  
+count        371528.000000      371528.0  371528.00000  
+mean              5.734445           0.0   50820.66764  
+std               3.712412           0.0   25799.08247  
+min               0.000000           0.0    1067.00000  
+25%               3.000000           0.0   30459.00000  
+50%               6.000000           0.0   49610.00000  
+75%               9.000000           0.0   71546.00000  
+max              12.000000           0.0   99998.00000  
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+dateCrawled                0
+name                       0
+seller                     0
+offerType                  0
+price                      0
+abtest                     0
+vehicleType            37869
+yearOfRegistration         0
+gearbox                20209
+powerPS                    0
+model                  20484
+kilometer                  0
+monthOfRegistration        0
+fuelType               33386
+brand                      0
+notRepairedDamage      72060
+dateCreated                0
+nrOfPictures               0
+postalCode                 0
+lastSeen                   0
+dtype: int64
+
+
+Cleaning the data: Displaying the Frequency Counts
+#-----------------------------------------------------------#
+
+
+ Seller column Frequency Counts
+privat        371525
+gewerblich         3
+Name: seller, dtype: int64
+
+
+ offerType column Frequency Counts
+Angebot    371516
+Gesuch         12
+Name: offerType, dtype: int64
+
+
+ nrOfPictures column Frequency Counts
+0    371528
+Name: nrOfPictures, dtype: int64
+
+
+ abtest column Frequency Counts
+test       192585
+control    178943
+Name: abtest, dtype: int64
+
+
+ vehicle Type column Frequency Counts
+limousine     95894
+kleinwagen    80023
+kombi         67564
+bus           30201
+cabrio        22898
+coupe         19015
+suv           14707
+andere         3357
+Name: vehicleType, dtype: int64
+
+
+ gearbox column Frequency Counts
+manuell      274214
+automatik     77105
+Name: gearbox, dtype: int64
+
+
+ monthOfRegistration column Frequency Counts
+0     37675
+3     36170
+6     33167
+4     30918
+5     30631
+7     28958
+10    27337
+11    25489
+12    25380
+9     25074
+1     24561
+8     23765
+2     22403
+Name: monthOfRegistration, dtype: int64
+
+
+ notRepairedDamage column Frequency Counts
+nein    263182
+ja       36286
+Name: notRepairedDamage, dtype: int64
+
+
+ notRepairedDamage column Frequency Counts
+Ford_Fiesta                                                           657
+BMW_318i                                                              627
+Opel_Corsa                                                            622
+Volkswagen_Golf_1.4                                                   603
+BMW_316i                                                              523
+BMW_320i                                                              492
+Volkswagen_Polo                                                       475
+Renault_Twingo                                                        447
+Volkswagen_Golf                                                       428
+Volkswagen_Golf_1.6                                                   413
+Volkswagen_Polo_1.2                                                   412
+BMW_116i                                                              394
+Opel_Corsa_1.2_16V                                                    373
+Opel_Corsa_B                                                          369
+Opel_Astra                                                            366
+Peugeot_206                                                           365
+Ford_Focus                                                            361
+Opel_Corsa_1.0_12V                                                    344
+Renault_Twingo_1.2                                                    322
+Volkswagen_Passat_Variant_1.9_TDI                                     274
+Volkswagen_Golf_1.9_TDI                                               273
+Opel_Astra_1.6                                                        260
+Audi_A4_Avant_2.0_TDI_DPF                                             254
+MINI_Mini_Cooper                                                      245
+Ford_Ka                                                               242
+Fiat_Punto                                                            242
+Audi_A4_Avant_1.9_TDI                                                 241
+Audi_A4_1.6                                                           238
+MINI_Mini_One                                                         233
+BMW_520i                                                              226
+                                                                     ... 
+Kleinwagen_fuer_wenig_Geld!                                             1
+BMW_318_i_Kombi_Touring_Leder_8_Fach_bereift__TÜV                       1
+Audi_a4_zu_verkaufen___Tausch_moeglich.                                 1
+Volkswagen_Passat_Variant_2.0_TDI_DSG_Individual_ACC_DCC                1
+Audi_A3_2_0TDI_Xenon_Navi_SHZ_PDC_                                      1
+Citroën_C2_1.4_HDi_VSX                                                  1
+Alfa_Spider_Cabrio_/_Leder_/_Klima                                      1
+Volkswagen_Passat_Variant_2.0_TDI_DPF_Comfortline__DSG                  1
+Opel_astra_1.4_turbo__5_jahre_garantie_                                 1
+Mercedes_Benz_CLA_180_Urban___Xenon__Leder__AMG__Kamera__....           1
+Golf_2_1.8_Turbo_APX_Porsche_Bremsanlage_und_Felgen                     1
+Golf_2_GTI_16v                                                          1
+Honda_CRZ_1.5_VTEC_Sport_Rueckfahrkamera__Tempomat_Soundsystem          1
+Verkaufe_meinen_Renault_Scenic_1_6_16V_110_Dinamique                    1
+VW_EOS_Edition_8_Fach_bereift                                           1
+Audi_A6_4B_2.5TDI_Quattro_Tuev_bis_12/16___kleines_Navi                 1
+Peugeot_306_Cabrio_Bastlerfahrzeug                                      1
+VW_T4_Caravelle_Syncro                                                  1
+Mercedes_Benz_Viano_3.0_CDI_Automatik_8_Sitze_Navi_AHK                  1
+Golf_6_GTI_Edition_35__Garantie__Leder__Navi__Xenon                     1
+Bmw_320i__automatisches_Getriebe__TÜV_4/17                              1
+Sitzfelle_fuer_Audi_80_Massanfertigung_guter_Zustand                    1
+Ford_Mondeo_2.0_TDCI_KLIMA_8_FACH_EURO_4_MOTORPROBLEM                   1
+Golf_IV__in_Lila                                                        1
+Triumph_TR6__US_Ausfuehrung__mit_Overdrive                              1
+Volkswagen_Lupo_1.4_TÜV_9/2017_+_scheckheftgepflegt                     1
+Kia_Pride_Rallye                                                        1
+Cadillac_bls_2008                                                       1
+Polo_86C_2F_mit_AHK_TÜV_Neu                                             1
+Citroen_Saxo_1.1_|_54_PS_|__HSN:_3001_TSN:_284_|_Schnaeppchenpreis      1
+Name: name, Length: 233531, dtype: int64
+
+
+ Removing Unwanted Columns
+#-----------------------------------------------------------#
+
+ Removed Column: seller
+
+ Removed Column: offerType
+
+ Removed Column: nrOfPictures
+
+ Removed Column: name (as the names would not help much to the modelling)
+
+The dates "dateCrawled","dateCreated","lastSeen" represents when was the ads crawled , or time of lastseen of these ads.
+we will not able to collect much information from these dates so we can remove them
+ Removed Columns: "dateCrawled","dateCreated","lastSeen"  
+
+
+ Print first few records of the Data:
+#-----------------------------------------------------------#
+   price abtest vehicleType  yearOfRegistration  gearbox  powerPS model  \
+0    480   test         NaN                1993  manuell        0  golf   
+1  18300   test       coupe                2011  manuell      190   NaN   
+
+   kilometer  monthOfRegistration fuelType       brand notRepairedDamage  \
+0     150000                    0   benzin  volkswagen               NaN   
+1     125000                    5   diesel        audi                ja   
+
+   postalCode  
+0       70435  
+1       66954  
+
+
+ Shape of the Dataset:
+#-----------------------------------------------------------#
+(371528, 13)
+
+
+ Datatypes of the Data:
+#-----------------------------------------------------------#
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 371528 entries, 0 to 371527
+Data columns (total 13 columns):
+price                  371528 non-null int64
+abtest                 371528 non-null object
+vehicleType            333659 non-null object
+yearOfRegistration     371528 non-null int64
+gearbox                351319 non-null object
+powerPS                371528 non-null int64
+model                  351044 non-null object
+kilometer              371528 non-null int64
+monthOfRegistration    371528 non-null int64
+fuelType               338142 non-null object
+brand                  371528 non-null object
+notRepairedDamage      299468 non-null object
+postalCode             371528 non-null int64
+dtypes: int64(6), object(7)
+memory usage: 36.8+ MB
+None
+
+
+ Data Central Tendency Values:
+#-----------------------------------------------------------#
+              price  yearOfRegistration        powerPS      kilometer  \
+count  3.715280e+05       371528.000000  371528.000000  371528.000000   
+mean   1.729514e+04         2004.577997     115.549477  125618.688228   
+std    3.587954e+06           92.866598     192.139578   40112.337051   
+min    0.000000e+00         1000.000000       0.000000    5000.000000   
+25%    1.150000e+03         1999.000000      70.000000  125000.000000   
+50%    2.950000e+03         2003.000000     105.000000  150000.000000   
+75%    7.200000e+03         2008.000000     150.000000  150000.000000   
+max    2.147484e+09         9999.000000   20000.000000  150000.000000   
+
+       monthOfRegistration    postalCode  
+count        371528.000000  371528.00000  
+mean              5.734445   50820.66764  
+std               3.712412   25799.08247  
+min               0.000000    1067.00000  
+25%               3.000000   30459.00000  
+50%               6.000000   49610.00000  
+75%               9.000000   71546.00000  
+max              12.000000   99998.00000  
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+price                      0
+abtest                     0
+vehicleType            37869
+yearOfRegistration         0
+gearbox                20209
+powerPS                    0
+model                  20484
+kilometer                  0
+monthOfRegistration        0
+fuelType               33386
+brand                      0
+notRepairedDamage      72060
+postalCode                 0
+dtype: int64
+
+
+ Value Counts and Bar Chart for notRepairedDamage
+#-----------------------------------------------------------#
+nein    263182
+NaN      72060
+ja       36286
+Name: notRepairedDamage, dtype: int64
+Filling Null Values for  notRepairedDamage
+#-----------------------------------------------------------#
+
+
+ Value Counts and Bar Chart for notRepairedDamage
+#-----------------------------------------------------------#
+nein    335242
+ja       36286
+Name: notRepairedDamage, dtype: int64
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+price                      0
+abtest                     0
+vehicleType            37869
+yearOfRegistration         0
+gearbox                20209
+powerPS                    0
+model                  20484
+kilometer                  0
+monthOfRegistration        0
+fuelType               33386
+brand                      0
+notRepairedDamage          0
+postalCode                 0
+dtype: int64
+
+
+ Value Counts and Bar Chart for vehicleType
+#-----------------------------------------------------------#
+limousine     95894
+kleinwagen    80023
+kombi         67564
+NaN           37869
+bus           30201
+cabrio        22898
+coupe         19015
+suv           14707
+andere         3357
+Name: vehicleType, dtype: int64
+Filling Null Values for  vehicleType
+#-----------------------------------------------------------#
+
+
+ Value Counts and Bar Chart for vehicleType
+#-----------------------------------------------------------#
+limousine     95894
+kleinwagen    80023
+kombi         67564
+no-value      37869
+bus           30201
+cabrio        22898
+coupe         19015
+suv           14707
+andere         3357
+Name: vehicleType, dtype: int64
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+price                      0
+abtest                     0
+vehicleType                0
+yearOfRegistration         0
+gearbox                20209
+powerPS                    0
+model                  20484
+kilometer                  0
+monthOfRegistration        0
+fuelType               33386
+brand                      0
+notRepairedDamage          0
+postalCode                 0
+dtype: int64
+
+
+ Value Counts and Bar Chart for gearbox
+#-----------------------------------------------------------#
+manuell      274214
+automatik     77105
+NaN           20209
+Name: gearbox, dtype: int64
+Filling Null Values for  gearbox
+#-----------------------------------------------------------#
+
+
+ Value Counts and Bar Chart for gearbox
+#-----------------------------------------------------------#
+manuell      274214
+automatik     77105
+no-value      20209
+Name: gearbox, dtype: int64
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+price                      0
+abtest                     0
+vehicleType                0
+yearOfRegistration         0
+gearbox                    0
+powerPS                    0
+model                  20484
+kilometer                  0
+monthOfRegistration        0
+fuelType               33386
+brand                      0
+notRepairedDamage          0
+postalCode                 0
+dtype: int64
+
+
+ Value Counts and Bar Chart for model
+#-----------------------------------------------------------#
+golf                  30070
+andere                26400
+3er                   20567
+NaN                   20484
+polo                  13092
+corsa                 12573
+astra                 10830
+passat                10306
+a4                    10257
+c_klasse               8775
+5er                    8546
+e_klasse               7561
+a3                     6604
+a6                     6023
+focus                  5950
+fiesta                 5775
+transporter            5528
+twingo                 4953
+2_reihe                4816
+fortwo                 4338
+a_klasse               4316
+vectra                 4255
+1er                    3837
+mondeo                 3626
+clio                   3553
+touran                 3540
+3_reihe                3503
+punto                  3349
+zafira                 3049
+megane                 2927
+                      ...  
+mii                      81
+crossfire                66
+range_rover_evoque       65
+gl                       64
+nubira                   62
+move                     60
+lybra                    54
+145                      50
+v60                      48
+croma                    45
+amarok                   42
+delta                    40
+terios                   35
+lodgy                    35
+9000                     31
+charade                  27
+b_max                    26
+musa                     25
+200                      18
+materia                  18
+kappa                    15
+samara                   13
+elefantino               11
+i3                       10
+kalina                    9
+serie_2                   8
+rangerover                6
+serie_3                   4
+serie_1                   2
+discovery_sport           1
+Name: model, Length: 252, dtype: int64
+Filling Null Values for  model
+#-----------------------------------------------------------#
+
+
+ Value Counts and Bar Chart for model
+#-----------------------------------------------------------#
+golf                  30070
+andere                26400
+3er                   20567
+no-value              20484
+polo                  13092
+corsa                 12573
+astra                 10830
+passat                10306
+a4                    10257
+c_klasse               8775
+5er                    8546
+e_klasse               7561
+a3                     6604
+a6                     6023
+focus                  5950
+fiesta                 5775
+transporter            5528
+twingo                 4953
+2_reihe                4816
+fortwo                 4338
+a_klasse               4316
+vectra                 4255
+1er                    3837
+mondeo                 3626
+clio                   3553
+touran                 3540
+3_reihe                3503
+punto                  3349
+zafira                 3049
+megane                 2927
+                      ...  
+mii                      81
+crossfire                66
+range_rover_evoque       65
+gl                       64
+nubira                   62
+move                     60
+lybra                    54
+145                      50
+v60                      48
+croma                    45
+amarok                   42
+delta                    40
+lodgy                    35
+terios                   35
+9000                     31
+charade                  27
+b_max                    26
+musa                     25
+materia                  18
+200                      18
+kappa                    15
+samara                   13
+elefantino               11
+i3                       10
+kalina                    9
+serie_2                   8
+rangerover                6
+serie_3                   4
+serie_1                   2
+discovery_sport           1
+Name: model, Length: 252, dtype: int64
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+price                      0
+abtest                     0
+vehicleType                0
+yearOfRegistration         0
+gearbox                    0
+powerPS                    0
+model                      0
+kilometer                  0
+monthOfRegistration        0
+fuelType               33386
+brand                      0
+notRepairedDamage          0
+postalCode                 0
+dtype: int64
+
+
+ Value Counts and Bar Chart for fuelType
+#-----------------------------------------------------------#
+benzin     223857
+diesel     107746
+NaN         33386
+lpg          5378
+cng           571
+hybrid        278
+andere        208
+elektro       104
+Name: fuelType, dtype: int64
+Filling Null Values for  fuelType
+#-----------------------------------------------------------#
+
+
+ Value Counts and Bar Chart for fuelType
+#-----------------------------------------------------------#
+benzin     257243
+diesel     107746
+lpg          5378
+cng           571
+hybrid        278
+andere        208
+elektro       104
+Name: fuelType, dtype: int64
+
+
+ Null Values in the Dataset:
+#-----------------------------------------------------------#
+price                  0
+abtest                 0
+vehicleType            0
+yearOfRegistration     0
+gearbox                0
+powerPS                0
+model                  0
+kilometer              0
+monthOfRegistration    0
+fuelType               0
+brand                  0
+notRepairedDamage      0
+postalCode             0
+dtype: int64
+
+
+Feature Engineering
+#-----------------------------------------------------------#
+   price abtest vehicleType  yearOfRegistration  gearbox  powerPS     model  \
+0    480   test    no-value                1993  manuell        0      golf   
+1  18300   test       coupe                2011  manuell      190  no-value   
+
+   kilometer  monthOfRegistration fuelType       brand notRepairedDamage  \
+0     150000                    0   benzin  volkswagen              nein   
+1     125000                    5   diesel        audi                ja   
+
+   postalCode  
+0       70435  
+1       66954  
+#--------Converting the String data to numbers by Label Encoder------------#
+List of columns:
+['abtest', 'vehicleType', 'gearbox', 'model', 'fuelType', 'brand', 'notRepairedDamage']
+   price abtest vehicleType  yearOfRegistration  gearbox  powerPS     model  \
+0    480   test    no-value                1993  manuell        0      golf   
+1  18300   test       coupe                2011  manuell      190  no-value   
+
+   kilometer  monthOfRegistration fuelType       brand notRepairedDamage  \
+0     150000                    0   benzin  volkswagen              nein   
+1     125000                    5   diesel        audi                ja   
+
+   postalCode  abtest_int  vehicleType_int  gearbox_int  model_int  \
+0       70435           1                7            1        118   
+1       66954           1                3            1        163   
+
+   fuelType_int  brand_int  notRepairedDamage_int  
+0             1         38                      1  
+1             3          1                      0  
+                          price  yearOfRegistration   powerPS  kilometer  \
+price                  1.000000           -0.000182  0.006850  -0.000635   
+yearOfRegistration    -0.000182            1.000000  0.000351  -0.055319   
+powerPS                0.006850            0.000351  1.000000  -0.010738   
+kilometer             -0.000635           -0.055319 -0.010738   1.000000   
+monthOfRegistration   -0.002826           -0.011607  0.044358   0.001838   
+postalCode            -0.003164           -0.001652  0.027113  -0.026694   
+abtest_int             0.001680            0.000766 -0.001107  -0.002744   
+vehicleType_int       -0.004061            0.028262  0.003508   0.035626   
+gearbox_int            0.001084            0.016474 -0.169210   0.010422   
+model_int              0.001260            0.005487 -0.046875  -0.023514   
+fuelType_int          -0.002527            0.008414  0.064780   0.104175   
+brand_int              0.001440           -0.001031 -0.095360  -0.026253   
+notRepairedDamage_int -0.004432            0.010379  0.021043  -0.083726   
+
+                       monthOfRegistration  postalCode  abtest_int  \
+price                            -0.002826   -0.003164    0.001680   
+yearOfRegistration               -0.011607   -0.001652    0.000766   
+powerPS                           0.044358    0.027113   -0.001107   
+kilometer                         0.001838   -0.026694   -0.002744   
+monthOfRegistration               1.000000    0.014963    0.001351   
+postalCode                        0.014963    1.000000    0.002015   
+abtest_int                        0.001351    0.002015    1.000000   
+vehicleType_int                  -0.051997   -0.012178    0.000840   
+gearbox_int                      -0.119541    0.005028    0.000459   
+model_int                        -0.023125   -0.047835    0.001041   
+fuelType_int                      0.087175    0.010020   -0.000088   
+brand_int                        -0.021609   -0.071057    0.002954   
+notRepairedDamage_int             0.035401    0.004888    0.000584   
+
+                       vehicleType_int  gearbox_int  model_int  fuelType_int  \
+price                        -0.004061     0.001084   0.001260     -0.002527   
+yearOfRegistration            0.028262     0.016474   0.005487      0.008414   
+powerPS                       0.003508    -0.169210  -0.046875      0.064780   
+kilometer                     0.035626     0.010422  -0.023514      0.104175   
+monthOfRegistration          -0.051997    -0.119541  -0.023125      0.087175   
+postalCode                   -0.012178     0.005028  -0.047835      0.010020   
+abtest_int                    0.000840     0.000459   0.001041     -0.000088   
+vehicleType_int               1.000000    -0.005664  -0.104978     -0.001283   
+gearbox_int                  -0.005664     1.000000   0.060961     -0.170053   
+model_int                    -0.104978     0.060961   1.000000      0.017146   
+fuelType_int                 -0.001283    -0.170053   0.017146      1.000000   
+brand_int                    -0.081998     0.120905   0.462932     -0.055332   
+notRepairedDamage_int         0.002157    -0.017097  -0.002488      0.029781   
+
+                       brand_int  notRepairedDamage_int  
+price                   0.001440              -0.004432  
+yearOfRegistration     -0.001031               0.010379  
+powerPS                -0.095360               0.021043  
+kilometer              -0.026253              -0.083726  
+monthOfRegistration    -0.021609               0.035401  
+postalCode             -0.071057               0.004888  
+abtest_int              0.002954               0.000584  
+vehicleType_int        -0.081998               0.002157  
+gearbox_int             0.120905              -0.017097  
+model_int               0.462932              -0.002488  
+fuelType_int           -0.055332               0.029781  
+brand_int               1.000000               0.002467  
+notRepairedDamage_int   0.002467               1.000000  
+#-----------------Printing Heatmap-------------------------#
+#-----------------List of the most influencing features for the price-------------------------#
+powerPS                  0.006850
+notRepairedDamage_int    0.004432
+vehicleType_int          0.004061
+postalCode               0.003164
+monthOfRegistration      0.002826
+fuelType_int             0.002527
+abtest_int               0.001680
+brand_int                0.001440
+model_int                0.001260
+gearbox_int              0.001084
+kilometer                0.000635
+yearOfRegistration       0.000182
+Name: price, dtype: float64
+
+
+Prepare the data for modelling. Dividing the data in to train and test
+#---------------------------------------------------------------------------#
+   price abtest vehicleType  yearOfRegistration  gearbox  powerPS     model  \
+0    480   test    no-value                1993  manuell        0      golf   
+1  18300   test       coupe                2011  manuell      190  no-value   
+
+   kilometer  monthOfRegistration fuelType       brand notRepairedDamage  \
+0     150000                    0   benzin  volkswagen              nein   
+1     125000                    5   diesel        audi                ja   
+
+   postalCode  abtest_int  vehicleType_int  gearbox_int  model_int  \
+0       70435           1                7            1        118   
+1       66954           1                3            1        163   
+
+   fuelType_int  brand_int  notRepairedDamage_int  
+0             1         38                      1  
+1             3          1                      0  
+Shape of Train Input Data: (248923, 13)
+Shape of Test Input Data: (122605, 13)
+Shape of Train Output Data: (248923,)
+Shape of Test Output Data: (122605,)
+
+
+ Modelling with Random Forests
+#---------------------------------------------------------------------------#
+Now Training the model...
+Now Predicting the accuracy for train dataset
+Accuracy Score for Train dataset: 0.92
+Now Predicting the accuracy for test dataset
+Accuracy Score for Test dataset: 1.00
+Predicting the values and writing the Actual and Predicted values to the file  predictions/RF_Actual_Predicted_output.csv
+Printing output to the csv file
+------------Random Forests Modelling Ended---------------------
+
+
+ Modelling with Linear Regression
+#---------------------------------------------------------------------------#
+Now Training the model...
+Intercepts: 8.36735125631e-11
+Coefficients: [  1.00000000e+00   7.63687971e-14   1.42248368e-14   3.53773625e-16
+  -1.83649713e-11   3.11024536e-15  -2.20771984e-10   3.89636157e-12
+  -1.92244484e-10  -2.38438646e-13  -4.22837911e-11   4.18911600e-12
+   4.83645421e-11]
+Now Predicting the accuracy for train dataset
+Accuracy Score for Train dataset: 1.00
+Now Predicting the accuracy for test dataset
+Accuracy Score for Test dataset: 1.00
+Predicting the values and writing the Actual and Predicted values to the file  predictions/LR_Actual_Predicted_output.csv
+Printing output to the csv file
+------------Linear Regression Modelling Ended---------------------
+
+
+#----------------------THE END OF THE PROJECT----------------------#
